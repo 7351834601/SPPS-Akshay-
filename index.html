@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPPS - Student Performance Prediction System</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="overlay">
+      <div class="title-box">
+        <h1>SPPS</h1>
+        <p>Student Performance Prediction System</p>
+        <button class="login-btn" onclick="showLogin()">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Page -->
+  <div class="login-page hidden" id="loginPage">
+    <div class="login-box">
+      <h2><i class="fas fa-user"></i> Login</h2>
+      <input type="email" id="email" placeholder="Enter your email" required/>
+      <input type="password" id="password" placeholder="Enter password" required/>
+      <button onclick="login()">Login</button>
+      <p>Don't have an account? 
+        <a href="#" onclick="showRegister()" style="color:#00c6ff">Register here</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Register Page -->
+  <div class="login-page hidden" id="registerPage">
+    <div class="login-box" style="width: 400px;">
+      <h2><i class="fas fa-user-plus"></i> Register</h2>
+      <input type="text" id="reg_name" placeholder="Full Name" required/>
+      <input type="email" id="reg_email" placeholder="Email" required/>
+      <input type="password" id="reg_password" placeholder="Password" required/>
+      <select id="reg_role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+      </select>
+      <input type="text" id="reg_roll" placeholder="Roll Number (For Student only)" />
+      <input type="text" id="reg_dept" placeholder="Department" />
+      <input type="number" id="reg_sem" placeholder="Semester (For Student only)" />
+      <button onclick="register()">Register</button>
+      <button onclick="hideRegister()" style="background:#666; margin-top:8px;">Back to Login</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="hidden">
+    <div class="navbar">
+      <h2>SPPS Dashboard</h2>
+      <div>
+        <span id="userName" style="font-weight:600; margin-right:15px;"></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDash" class="role">
+      <h2>Welcome, <span id="studentName"></span></h2>
+      
+      <div class="grid">
+        <div class="card">
+          <h3>Performance Score</h3>
+          <h1 id="perfScore">0%</h1>
+        </div>
+        <div class="card">
+          <h3>Risk Level</h3>
+          <h1 id="riskLevel" class="low">Low</h1>
+        </div>
+      </div>
+
+      <!-- NEW: My Marks Section -->
+      <div class="card full">
+        <h3>My Marks History</h3>
+        <table id="marksTable" style="width:100%; border-collapse:collapse; margin-top:10px;">
+          <thead>
+            <tr style="background:#f0f0f0;">
+              <th style="padding:10px; text-align:left;">Course</th>
+              <th style="padding:10px;">Exam Type</th>
+              <th style="padding:10px;">Marks</th>
+              <th style="padding:10px;">Percentage</th>
+              <th style="padding:10px;">Date</th>
+            </tr>
+          </thead>
+          <tbody id="marksBody"></tbody>
+        </table>
+      </div>
+
+      <div class="card full">
+        <h3>Suggestions</h3>
+        <ul id="suggestions"></ul>
+      </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div id="teacherDash" class="role">
+      <h2>Teacher Dashboard</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Total Students</h3>
+          <h1 id="totalStudents">0</h1>
+        </div>
+        <div class="card">
+          <h3>At Risk</h3>
+          <h1 id="atRisk" style="color:red">0</h1>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Upload Marks</h3>
+        <input type="number" id="studentIdMark" placeholder="Student ID" required/>
+        <input type="number" id="courseIdMark" placeholder="Course ID" required/>
+        <select id="examType" required>
+          <option value="internal">Internal</option>
+          <option value="assignment">Assignment</option>
+          <option value="final">Final</option>
+        </select>
+        <input type="number" id="marksObt" placeholder="Marks Obtained" required/>
+        <input type="number" id="maxMarks" placeholder="Max Marks" required/>
+        <button onclick="uploadMarks()">Submit Marks</button>
+      </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDash" class="role">
+      <h2>Admin Dashboard</h2>
+      <div class="card">
+        <h3>System is Running Successfully</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
